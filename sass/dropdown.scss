@@ -1,0 +1,103 @@
+.dropdown {
+  list-style: none;
+  position: relative;
+  // border: 1px solid #A2A4B2;
+  // border-bottom-left-radius: 2px;
+  // border-bottom-right-radius: 2px;
+  // width: 250px;
+  // height: 40px;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  z-index: 9999;
+      font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #666666;
+
+
+  &__label {
+    position: absolute;
+    top: -9px;
+    left: 15px;
+    background: #fff;
+    color: #444;
+    font-size: .8em;
+    font-family: Lato, sans-serif;
+  }
+
+  &__arrow {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transition: transform .2s linear;
+
+    &.expanded {
+      transform: rotate(-180deg);
+    }
+  }
+
+  &__list {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    // border-bottom-left-radius: 2px;
+    // border-bottom-right-radius: 2px;
+    box-shadow: 0px 3px 2px 0 #a2a4b2;
+    transition: opacity .1s cubic-bezier(0, 0, 0.38, 0.9), max-height .5s cubic-bezier(0, 0, 0.38, 0.9);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    background-color: white;
+  }
+
+  &__list-container {
+    position: relative;
+    z-index: 9999;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+   &__list-item {
+    // font-family: Lato, sans-serif;
+    // color: #444444;
+    padding: 10px 0px;
+    padding-left: 15px;
+    transition: background-color .1s linear, color .1s linear;
+    color: #444444;
+    list-style-position: inside;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+     &:hover,
+     &:focus {
+       background-color: #57e4d3;
+       color: white;
+     }
+  }
+}
+
+#dropdown__selected {
+    padding: 15px 10px;
+    padding-left: 15px;
+    list-style-position: inside;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+
+  &:focus {
+    outline: 1px dotted #57e4d3;
+  }
+}
+
+.open {
+  opacity: 1;
+  overflow: auto;
+  max-height: 15rem;
+}

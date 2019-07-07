@@ -120,7 +120,17 @@ add_action( 'widgets_init', 'floorball_widgets_init' );
  * Enqueue scripts and styles.
  */
 function floorball_scripts() {
-	wp_enqueue_style( 'floorball-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'style', get_stylesheet_uri() );
+
+  wp_enqueue_style( 'style-form', get_template_directory_uri() . '/style-form.css' );
+
+  wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.css');
+
+  wp_enqueue_script( 'tilt', get_template_directory_uri() . '/js/tilt.jquery.min.js', array(), '', true );
+
+  wp_enqueue_script( 'dropdown', get_template_directory_uri() . '/js/dropdown.js', array(), '20151215', true );
+
+  wp_enqueue_script( 'cutomize-form', get_template_directory_uri() . '/js/customize-form.js', array(), '20151215', true );
 
 	wp_enqueue_script( 'floorball-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
@@ -131,6 +141,9 @@ function floorball_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'floorball_scripts' );
+
+
+
 
 /**
  * Implement the Custom Header feature.
@@ -157,5 +170,15 @@ require get_template_directory() . '/inc/customizer.php';
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
+}
+
+if ( ! function_exists('write_log')) {
+   function write_log ( $log )  {
+      if ( is_array( $log ) || is_object( $log ) ) {
+         error_log( print_r( $log, true ) );
+      } else {
+         error_log( $log );
+      }
+   }
 }
 

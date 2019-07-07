@@ -9,6 +9,7 @@ const postcss = require('gulp-postcss');
 const autoprefixer = require("autoprefixer");
 const insert = require('gulp-insert');
 const sass = require('gulp-sass');
+//const copydir = require('copy-dir');
 
 // var gulp = require("gulp");
 // var sass = require("gulp-sass");
@@ -36,18 +37,33 @@ const config = {
   src: "",
   build: "/var/www/forma/wp-content/themes/forma/",
   templates: ["", "inc/", "template-parts/"],
-  allPaths: [
-    "fonts/**",
-    "inc/**",
-    "img/**",
-    "languages/**",
-    "layouts/**",
-    "js/**",
-    "js-mini/**",
-    "template-parts/**",
-    "*.php"
-  ]
+  allPaths: {
+    "fonts/**/*": "fonts/",
+    "inc/*": "inc/",
+    "img/*": "img/",
+    "languages/*": "languages/",
+    "layouts/*": "layouts/",
+    "js/**/*": "js/",
+    "js-mini/*": "js-mini/",
+    "template-parts/*": "template-parts/",
+    "*.php": "",
+    "css/": "css/"
+  }
 }
+
+
+  // allPaths: {
+  //   "fonts/": "fonts/",
+  //   "inc/": "inc/",
+  //   "img/": "img/",
+  //   "languages": "languages/",
+  //   "layouts": "layouts/",
+  //   "js": "js/",
+  //   "js-mini": "js-mini/",
+  //   "template-parts": "template-parts/",
+  //   "*.php": ""
+  // }
+
 
 const styleTitle = 'Theme Name: forma \n Theme URI: https://github.com/MayaSol/forma \n Author: MayaSol \n Author URI: https://github.com/MayaSol \n Description: Description \n Version: 1.0.0';
 
@@ -60,11 +76,15 @@ function clearBuildDir() {
 exports.clearBuildDir = clearBuildDir;
 
 function copyAll(cb) {
-  if(config.allPaths.length) {
-    (async () => {
-      await cpy(config.allPaths, config.build);
-      cb();
-    })();
+  if(config.allPaths) {
+    for (let item in config.allPaths) {
+      let src=`${config.src}${item}`;
+      console.log(src);
+      let dest = `${config.build}${config.allPaths[item]}`;
+      console.log(dest);
+      cpy(src,dest);
+    }
+    cb();
   }
   else {
     cb();
@@ -81,6 +101,7 @@ exports.build = series(
 function compileSass() {
   const fileList = [
     'sass/style.scss',
+    'sass/style-form.scss'
   ];
   return src(fileList)
     .pipe(plumber({
@@ -95,7 +116,7 @@ function compileSass() {
     .pipe(postcss([
       autoprefixer(),
     ]))
-    .pipe(insert.prepend(`/*${styleTitle}\n*/`))
+    // .pipe(insert.prepend(`/*${styleTitle}\n*/`))
     .pipe(dest(`${config.build}`));
 }
 exports.compileSass = compileSass;
