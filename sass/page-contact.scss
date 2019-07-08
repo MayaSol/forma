@@ -1,0 +1,22 @@
+.page-id-6 {
+  height: 100vh;
+  margin: 0;
+  background-color: yellow;
+  background: linear-gradient(-135deg, #00fdb9, #78d1e6);
+  .site {
+    height: 100%;
+  }
+  .site-content {
+    height: 100%;
+  }
+  .content-area {
+    height: 100%;
+  }
+  .site-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    height: 100%;
+  }
+}

@@ -1,30 +1,43 @@
 .get-prototype {
   display: flex;
-  padding: 10px 100px;
+  width: 960px;
+  padding: 110px 130px 33px 95px;
+  background-color: #fff;
+  border-radius: 10px;
+  //overflow: hidden;
+  margin: auto;
+  box-sizing: border-box;
 
-  &__img {
-    //display: flex;
+  &__img-container {
     flex-basis: 50%;
     flex-grow: 0;
     box-sizing: border-box;
-    img {
-        width: 80%;
-        height: auto;
-        margin-top: 70px;
-        margin-bottom: auto;
-        margin-left: auto;
-        margin-right: auto;
-    }
   }
 
   &__img-inner {
     display: flex;
+    width: 400px;
+    min-height: 400px;
+    img {
+        width: 70%;
+        height: 70%;
+        margin: auto;
+        margin-left: 10px;
+    }
   }
 
 
-  &__form {
+  &__form-container {
+    display: flex;
     flex-basis: 50%;
   }
+
+
+  &__form-inner {
+    width: 320px;
+    margin: auto;
+  }
+
 
   h1 {
     padding-bottom: 40px;
@@ -35,15 +48,7 @@
     font-family: 'Poppins';
     font-weight: 700;
     margin: 0;
-  }
-
-  .form-input_title {
-    font-size: 16px;
-    line-height: 1.2;
-    font-family: 'Poppins';
-    font-weight: 700;
-    color: #333333;
-    text-align: center;
+    text-transform: capitalize;
   }
 
   p,
@@ -51,26 +56,62 @@
     overflow: visible;
   }
 
+  .form-input_title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.2;
+    font-family: 'Poppins';
+    font-weight: 700;
+    color: #333333;
+    text-align: center;
+    text-transform: capitalize;
+  }
+
   .link-home {
     text-align: center;
-  }
-}
-
-.get-prototype-form {
-  display: flex;
-
-  &__inner {
-    width: 320px;
-    margin: auto;
   }
 
   .link-home-wrapper {
     text-align: center;
 
     a {
+      font-family: 'Poppins', sans-serif;
       text-align: center;
+      color: #666666;
+      text-decoration: none;
+      &:active,
+      &:hover,
+      &:focus {
+        color: #57e4d3;
+      }
     }
   }
 
 }
 
+
+@media #{$mobile-widths-only} {
+
+  .get-prototype {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 80px;
+    display: flex;
+    justify-content: center;
+
+    &__img-container {
+      display: none;
+    }
+
+    &__form-container {
+      flex-basis: 100%;
+    }
+
+    &__form-inner {
+      //width: calc( #{$screen-tablet} - 30px ); //!!!для .get-prototype__form-inner надо задавать width в px!!!
+      width: 80%;
+    }
+  }
+
+}

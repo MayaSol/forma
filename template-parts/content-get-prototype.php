@@ -14,14 +14,14 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class('get-prototype'); ?>>
 
 
-  <div class="get-prototype__img">
-    <div class="get-prototype__img-inner js-tilt" data-tilt>
-      <img src="<?php bloginfo('template_url'); ?>/img/logo-new.png" alt="Logotype image">
+  <div class="get-prototype__img-container">
+     <div class="get-prototype__img-inner js-tilt" data-tilt>
+      <img src="<?php bloginfo('template_url'); ?>/img/logo-new.jpg" alt="Logotype image">
     </div>
   </div>
 
-  <div class="get-prototype__form get-prototype-form">
-    <div class="get-prototype-form__inner">
+  <div class="get-prototype__form-container">
+    <div class="get-prototype__form-inner">
       <?php
         the_content();
       ?>
